@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    background-color: rgb(203, 224, 234);
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #fff;
+    width: 60vw;
+    border: 1px solid rgb(55, 135, 170);
+    box-shadow: 0 0 5px 0px black;
+    padding: 3rem;
+    border-radius: 15px;
+}
+
+.container__search {
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#input__word {
+    width: 60%;
+    border: none;
+    height: 2.5rem;
+    border-bottom: 2px solid rgb(55, 135, 170);
+    padding: 10px 10px 10px 0;
+    font-size: 1rem;    
+    outline: none;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+#btn__search {
+    width: 8rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(203, 224, 234);
+    padding: 0.6rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#btn__search:hover {
+    border: 2px solid rgb(55, 135, 170);
+}
+
+
+.pronunciation {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.9rem;
+    color: grey;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+
+
+
+#meaning {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+
+@media screen and (max-width: 965px) {
+    .container {
+        width: 75vw
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .container {
+        width: 75vw
+    }
+
+    .pronunciation audio {
+        margin-top: 20px;
+    }
+}
+
+
+@media screen and (max-width: 580px) {
+
+    body {
+        justify-content: center;
+    }
+
+    .container {
+        width: 90vw;
+        text-align: center;
+    }
+
+    #input__word {
+        width: 100%;
+    }
+
+    #btn__search {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .pronunciation {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        margin: 20px 0;
+        justify-content: center;
+    }
+
+
+}

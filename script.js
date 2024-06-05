@@ -7,13 +7,12 @@ search.addEventListener("click", findWord);
 
 async function findWord() {
   var wordEl = word.value;
-  console.log(wordEl);
+
   try {
     const data = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${wordEl}`
     );
     const response = await data.json();
-    console.log(response);
 
     result.innerHTML = `
 
@@ -29,23 +28,26 @@ async function findWord() {
       </div>
       
     `;
+
+    Validite(response);
   } catch (error) {
+
     console.log(error);
+    result.innerHTML = `<p class="errorWord">Sorry,  your word wasn't found.</p>`
   }
 
   clear();
-  Validite();
 }
 
 function clear() {
   word.value = "";
 }
 
-function Validite() {
+function Validite(response) {
   const sentenceEl = document.querySelector(".sentence");
-  const sentenceWord = sentenceEl.value;
+  const sentenceWord = `${response[0].meanings[0].definitions[0].example}`;
 
-  if (sentenceWord == undefined) {
+  if (sentenceWord == "undefined") {
     sentenceEl.textContent = "";
   }
 }

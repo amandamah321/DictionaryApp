@@ -48,6 +48,4 @@ function Validite() {
   if (sentenceWord == undefined) {
     sentenceEl.textContent = "";
   }
-
-  console.log(sentenceWord);
 }

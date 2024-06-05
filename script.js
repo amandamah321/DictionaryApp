@@ -7,7 +7,7 @@ search.addEventListener("click", findWord);
 
 async function findWord() {
   var wordEl = word.value;
-  console.log(wordEl)
+  console.log(wordEl);
   try {
     const data = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${wordEl}`
@@ -21,21 +21,33 @@ async function findWord() {
       
       <p class="definition">${response[0].meanings[0].definitions[0].definition}</p>
 
-      <p>${response[0].meanings[0].definitions[0].example}</p>
+      <p class="sentence">${response[0].meanings[0].definitions[0].example}</p>
 
       <div class="extra-details">
         <p>${response[0].phonetic}</p>
-        <p>${response[0].meanings[0].partOfSpeech}</p>
+        <p>*${response[0].meanings[0].partOfSpeech}*</p>
       </div>
       
     `;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
+
+  clear();
+  Validite();
 }
 
-function playAudio(url) {
-  new Audio(url).play();
+function clear() {
+  word.value = "";
 }
 
-playAudio();
+function Validite() {
+  const sentenceEl = document.querySelector(".sentence");
+  const sentenceWord = sentenceEl.value;
+
+  if (sentenceWord == undefined) {
+    sentenceEl.textContent = "";
+  }
+
+  console.log(sentenceWord);
+}

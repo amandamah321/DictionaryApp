@@ -1,45 +1,41 @@
-const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+const search = document.getElementById("search");
+const word = document.getElementById("word");
+const result = document.querySelector(".result");
+const btn = document.getElementById("btn");
 
-const btnSearch = document.getElementById("btn__search");
-const inputWord = document.getElementById("input__word");
-const resultEl = document.querySelector(".result");
-
-btnSearch.addEventListener("click", findWord);
+search.addEventListener("click", findWord);
 
 async function findWord() {
+  var wordEl = word.value;
+  console.log(wordEl)
   try {
-    const word = inputWord.value;
     const data = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-    ).then((response) => response.json());
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${wordEl}`
+    );
+    const response = await data.json();
+    console.log(response);
 
-    resultEl.innerHTML = `
-    <div>
-        <div class="word">
-            <h2>${word} - ${data[0].meanings[0].partOfSpeech}</h2>
-            <div class="pronunciation">
-                <p>Pronunciation: ${data[0].phonetic}</p>
-                <audio controls>
-                    <source src="${data[0].phonetics[0].audio}">
-                </audio>
-            </div>
-            <p id="meaning">${data[0].meanings[0].definitions[0].definition}.</p>
-        </div>
-    </div>
+    result.innerHTML = `
+
+      <h2 class="word-title">${response[0].word}</h2>
+      
+      <p class="definition">${response[0].meanings[0].definitions[0].definition}</p>
+
+      <p>${response[0].meanings[0].definitions[0].example}</p>
+
+      <div class="extra-details">
+        <p>${response[0].phonetic}</p>
+        <p>${response[0].meanings[0].partOfSpeech}</p>
+      </div>
+      
     `;
   } catch (error) {
-
-    resultEl.innerHTML = `
-    
-    <h2>Could not find your word.</h2>
-    
-    `
+    console.log(error)
   }
-
-
-  deleteWord();
 }
 
-function deleteWord() {
-  inputWord.value = "";
+function playAudio(url) {
+  new Audio(url).play();
 }
+
+playAudio();
